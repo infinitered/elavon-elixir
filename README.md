@@ -1,6 +1,7 @@
 # Elavon
+[![Build Status](https://semaphoreci.com/api/v1/ir/elavon-elixir/branches/master/shields_badge.svg)](https://semaphoreci.com/ir/elavon-elixir)
+[![Coverage Status](https://coveralls.io/repos/github/infinitered/elavon-elixir/badge.svg?branch=master)](https://coveralls.io/github/infinitered/elavon-elixir?branch=master)
 
-**TODO: Add description**
 
 ## Installation
 
