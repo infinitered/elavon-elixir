@@ -2,6 +2,14 @@
 # and its dependencies with the aid of the Mix.Config module.
 use Mix.Config
 
+config :elavon,
+  environment: :sandbox,
+  transaction_module: Elavon.Transaction.HTTP,
+  ssl_merchant_id: System.get_env("ELAVON_MERCHANT_ID"),
+  ssl_user_id: System.get_env("ELAVON_USER_ID"),
+  ssl_pin: System.get_env("ELAVON_PIN"),
+  custom_fields: [:Site, :EDate, :SDate]
+
 # This configuration is loaded before any dependency and is restricted
 # to this project. If another project depends on this project, this
 # file won't be loaded nor affect the parent project. For this reason,

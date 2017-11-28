@@ -19,3 +19,9 @@ Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_do
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/elavon](https://hexdocs.pm/elavon).
 
+## Configuration
+
+Test cards:
+
+*VISA*: 4124939999999990
+*MASTERCARD*: 5406004444444443
