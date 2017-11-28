@@ -12,7 +12,8 @@ defmodule ElavonTest do
         ssl_cvv2cvc2_indicator: 1,
         ssl_cvv2cvc2: 123,
         ssl_amount: 10.00,
-        ssl_exp_date: 1220
+        ssl_exp_date: 1220,
+        ssl_invoice_number: to_string(Enum.take_random(?a..?z, 20))
       }
 
       {:ok, %Elavon.Transaction{} = t} = Elavon.sale(params)
