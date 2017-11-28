@@ -3,9 +3,9 @@ defmodule Elavon.Exception do
 
   def exception(error) do
     %__MODULE__{
-      code: error[:errorCode],
+      code: error[:errorCode] || error[:ssl_result],
       name: error[:errorName],
-      message: error[:errorMessage],
+      message: error[:errorMessage] || error[:ssl_result_message],
       raw_body: error
     }
   end
