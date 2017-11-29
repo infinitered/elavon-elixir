@@ -27,8 +27,7 @@ defmodule Elavon do
       {:ok, %Elavon.Transaction{}}
   """
   @spec sale(map, list) ::
-    # {:ok, %Elavon.Transaction{}} |
-    {:ok, map} |
+    {:ok, %Elavon.Transaction{}} |
     {:error, %Elavon.Exception{}} |
     {:error, map}
   def sale(params, opts \\ []) do
