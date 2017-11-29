@@ -22,7 +22,7 @@ After `elavon` is installed, you'll need to add the appropriate configuration:
 
 ```
   config :elavon,
-    environment: :sandbox, #
+    environment: :sandbox,
     transaction_module: Elavon.Transaction.HTTP,
     ssl_merchant_id: System.get_env("ELAVON_MERCHANT_ID"),
     ssl_user_id: System.get_env("ELAVON_USER_ID"),
@@ -32,7 +32,7 @@ After `elavon` is installed, you'll need to add the appropriate configuration:
 
 The environment defaults to `:sandbox`, but you'll want to change it to `:production` in your `prod.exs` file.
 
-The transaction module is configurable so that you can create a mock module if necessary. For example:
+The transaction module is configurable so that you can create a mock module for testing if necessary. For example:
 
 ```
   # Create Elavon.Transaction.Mock module
@@ -43,7 +43,6 @@ The transaction module is configurable so that you can create a mock module if n
   end
 
   # Update test.exs config file:
-
   config :elavon,
     transaction_module: Elavon.Transaction.Mock
 ```
@@ -80,4 +79,4 @@ The test cards are not listed in the documentation and they may change in future
 Elavon, as an open source project, is free to use and always will be. [Infinite Red](https://infinite.red) offers premium Elavon support and general web &
 mobile app design/development services. Get in touch [here](https://infinite.red/contact) or email us at [hello@infinite.red](mailto:hello@infinite.red).
 
-
+![Infinite Red Logo](https://infinite.red/images/infinite_red_logo_colored.png)
