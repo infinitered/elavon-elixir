@@ -4,6 +4,7 @@ defmodule Elavon.Mixfile do
   def project do
     [
       app: :elavon,
+      description: "Native elixir client for USBank Elavon Converge API",
       version: "0.1.0",
       elixir: "~> 1.5",
       start_permanent: Mix.env == :prod,
