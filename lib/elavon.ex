@@ -35,7 +35,7 @@ defmodule Elavon do
     transaction_module().sale(params, opts)
   end
 
-  def transaction_module do
+  defp transaction_module do
     Application.get_env(:elavon, :transaction_module, Elavon.Transaction.HTTP)
   end
 end
