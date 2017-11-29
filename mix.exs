@@ -9,7 +9,9 @@ defmodule Elavon.Mixfile do
       start_permanent: Mix.env == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
-      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test]
+      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
+      docs: docs(),
+      package: package()
     ]
   end
 
@@ -25,7 +27,26 @@ defmodule Elavon.Mixfile do
     [
      {:httpoison, "~> 0.13"},
      {:poison, "~> 3.1"},
-     {:excoveralls, "~> 0.7", only: :test}
+     {:excoveralls, "~> 0.7", only: :test},
+     {:ex_doc, "~> 0.16", only: [:dev, :test]}
+    ]
+  end
+
+  defp docs do
+    [
+      readme: "README.md",
+      main: Elavon
+    ]
+  end
+
+  defp package do
+    [
+      files: ["lib", "mix.exs", "README.md", "CHANGELOG.md", "LICENSE"],
+      maintainers: ["Zachary Berkompas"],
+      licenses: ["MIT"],
+      links: %{
+        "Github" => "https://github.com/infinitered/elavon-elixir"
+      }
     ]
   end
 end

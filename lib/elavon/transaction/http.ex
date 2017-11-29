@@ -29,7 +29,6 @@ defmodule Elavon.Transaction.HTTP do
 
     if env == :sandbox do
       "https://demo.myvirtualmerchant.com/VirtualMerchantDemo" <> path
-      # "http://httpbin.org/post"
     else
       "https://www.myvirtualmerchant.com/VirtualMerchant" <> path
     end

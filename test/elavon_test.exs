@@ -87,5 +87,20 @@ defmodule ElavonTest do
       assert e.code == "1"
       assert e.message == "Declined - Transaction previously authorized"
     end
+
+    test "handles httpoison timeouts" do
+      opts = [timeout: 1, recv_timeout: 1]
+
+      params = %{
+        ssl_card_number: @visa,
+        ssl_cvv2cvc2_indicator: 1,
+        ssl_cvv2cvc2: 123,
+        ssl_amount: 10.00,
+        ssl_exp_date: 1220,
+        ssl_invoice_number: to_string(Enum.take_random(?a..?z, 20))
+      }
+
+      {:error, %HTTPoison.Error{id: nil, reason: :timeout}} = Elavon.sale(params, opts)
+    end
   end
 end

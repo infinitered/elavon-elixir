@@ -26,12 +26,13 @@ defmodule Elavon do
       })
       {:ok, %Elavon.Transaction{}}
   """
-  @spec sale(map) ::
+  @spec sale(map, list) ::
     # {:ok, %Elavon.Transaction{}} |
     {:ok, map} |
-    {:error, %Elavon.Exception{}}
-  def sale(params) do
-    transaction_module().sale(params)
+    {:error, %Elavon.Exception{}} |
+    {:error, map}
+  def sale(params, opts \\ []) do
+    transaction_module().sale(params, opts)
   end
 
   def transaction_module do
