@@ -102,5 +102,21 @@ defmodule ElavonTest do
 
       {:error, %HTTPoison.Error{id: nil, reason: :timeout}} = Elavon.sale(params, opts)
     end
+
+    test "handles invoice number to long error" do
+      params = %{
+        ssl_card_number: @visa,
+        ssl_cvv2cvc2_indicator: 1,
+        ssl_cvv2cvc2: 123,
+        ssl_amount: 10.00,
+        ssl_exp_date: 1220,
+        ssl_invoice_number: "asdflkjasdlfjaskldfjalskdjfklasjdflkasjdflkajsdfkljasldkfjalskdjf"
+      }
+
+      {:error, %Elavon.Exception{} = e} = Elavon.sale(params)
+
+      assert e.code == "5005"
+      assert e.name == "Field Character Limit Exceeded"
+    end
   end
 end

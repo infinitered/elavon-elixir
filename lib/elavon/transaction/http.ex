@@ -68,7 +68,7 @@ defmodule Elavon.Transaction.HTTP do
     |> String.split("\n")
     |> Enum.filter(&String.contains?(&1, "="))
     |> Enum.map(fn line ->
-        [key, value] = String.split(line, "=")
+        [key, value | _tail] = String.split(line, "=")
         key = String.trim(key) |> String.to_atom
         value = if String.trim(value) == "", do: nil, else: String.trim(value)
         {key, value}
