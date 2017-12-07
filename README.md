@@ -54,7 +54,6 @@ The custom fields configuration option allows you to specify any custom fields y
 The test cards are not listed in the documentation and they may change in future. Here are the current mastercard and visa test card numbers:
 
 **VISA**: 4124939999999990
-**MASTERCARD**: 5406004444444443
 
 ```
 

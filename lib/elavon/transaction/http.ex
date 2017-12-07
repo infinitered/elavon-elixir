@@ -11,7 +11,7 @@ defmodule Elavon.Transaction.HTTP do
   @opts [timeout: 30_000, recv_timeout: 30_000]
 
   def sale(params, opts \\ []) do
-    unwrap post("/process.do", params, [], opts ++ @opts)
+    unwrap post("/process.do", params, [], Keyword.merge(@opts, opts))
   end
 
   # HTTPoison Callbacks
@@ -41,7 +41,8 @@ defmodule Elavon.Transaction.HTTP do
       "ssl_pin" => Application.get_env(:elavon, :ssl_pin),
       "ssl_transaction_type" => "CCSALE",
       "ssl_result_format" => "ASCII",
-      "ssl_show_form" => "false"
+      "ssl_show_form" => "false",
+      "ssl_txn_currency_code" => "USD"
     }
 
     base_params
@@ -68,7 +69,7 @@ defmodule Elavon.Transaction.HTTP do
     |> String.split("\n")
     |> Enum.filter(&String.contains?(&1, "="))
     |> Enum.map(fn line ->
-        [key, value | _tail] = String.split(line, "=")
+        [key, value] = String.split(line, "=", parts: 2)
         key = String.trim(key) |> String.to_atom
         value = if String.trim(value) == "", do: nil, else: String.trim(value)
         {key, value}

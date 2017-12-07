@@ -2,7 +2,7 @@ defmodule ElavonTest do
   use ExUnit.Case
 
   @visa 4124939999999990
-  @mastercard 5406004444444443
+  @invalid_mastercard 5406004444444443
   @invalid 0000000000000000
 
   describe ".sale" do
@@ -28,6 +28,20 @@ defmodule ElavonTest do
       assert t.ssl_txn_time
     end
 
+    test "handles invalid master card currency error" do
+      params = %{
+        ssl_card_number: @invalid_mastercard,
+        ssl_cvv2cvc2_indicator: 1,
+        ssl_cvv2cvc2: 123,
+        ssl_amount: 10.00,
+        ssl_exp_date: 1220,
+        ssl_invoice_number: to_string(Enum.take_random(?a..?z, 20))
+      }
+
+      {:error, %Elavon.Exception{} = e} = Elavon.sale(params)
+      assert e.raw_body[:dccoption] =~ "Please charge my purchase in my home currency"
+    end
+
     test "handles invalid card error" do
       params = %{
         ssl_card_number: @invalid,
@@ -47,7 +61,7 @@ defmodule ElavonTest do
 
     test "handles invalid cvv" do
       params = %{
-        ssl_card_number: @mastercard,
+        ssl_card_number: @invalid_mastercard,
         ssl_cvv2cvc2_indicator: 1,
         ssl_cvv2cvc2: 6,
         ssl_amount: 10.00,
